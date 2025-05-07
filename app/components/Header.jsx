@@ -42,10 +42,10 @@ function Header() {
         <div className="flex items-center lg:order-2">
           {/* Donate Button (Single for All Screens) */}
           <Link
-            href="/pages/Login"
+            href="/login"
             className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm mx-4 px-4 py-2 dark:bg-purple-700 dark:hover:bg-blue-700 transition-all duration-700"
           >
-            Donate
+            Login
           </Link>
 
           {/* Mobile Menu Button */}

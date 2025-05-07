@@ -1,17 +1,100 @@
 "use client";
-import "../Login/login-page.css";
+import { registerUser } from "../../utils/api";
+import { loginUser } from "../../utils/api";
+import "./login-page.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { ToastContainer, toast, Bounce, Flip } from "react-toastify";
 
 function Login() {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+  const router = useRouter();
+  const notify = (error) =>
+    toast.warn(error, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+
+  const notifysuccess = (message) =>
+    toast.success(message, {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+      transition: Flip,
+    });
+
+  const [form, setForm] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    repassword: "",
+  });
+
+  const [loginform, setLoginform] = useState({ email: "", password: "" });
+
   const [flipped, setFlipped] = useState(false);
   const [forgot, setForgot] = useState(false);
 
-  function handleSubmit() {
-    window.open("/");
-    console.log("Form submitted");
-  }
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleLoginchange = (e) =>
+    setLoginform({ ...loginform, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await registerUser(form);
+      if (res.success) {
+        notifysuccess("Registered successfully!");
+        setFlipped(false);
+        setForm({
+          firstname: "",
+          lastname: "",
+          email: "",
+          password: "",
+          repassword: "",
+        });
+        setLoginform({ email: "", password: "" });
+      } else {
+        notify(res.message);
+      }
+    } catch (err) {
+      console.error("Register error:", err);
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await loginUser(loginform);
+      if (res.success) {
+        notifysuccess("Login successful");
+        setTimeout(() => {
+          router.push("/pages/Dashboard");
+          setLoginform({ email: "", password: "" });
+          setFlipped(false);
+        }, 2000);
+      } else {
+        notify(res.message);
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+    }
+  };
 
   return (
     <section className="flex justify-center items-center w-screen h-screen overflow-hidden box-border ">
@@ -23,7 +106,10 @@ function Login() {
           />
         ))}
       </div>
-
+      <ToastContainer />
+      <div onClick={router.back} className="absolute top-10 left-14 text-3xl text-blue-400 bg-gray-800 bg-opacity-35 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-900 backdrop-blur-md backdrop-saturate-150 border-2 border-blue-950 border-opacity-40 transition-all duration-500 ease-in-out">
+          <IoMdArrowRoundBack />
+        </div>
       {/* card container */}
       <div
         className={`absolute ${
@@ -40,15 +126,15 @@ function Login() {
               </h2>
               <form
                 className="form w-full flex flex-col gap-7"
-                method="POST"
-                onSubmit={() => {
-                  handleSubmit();
-                }}
+                onSubmit={handleLogin}
               >
                 <div className="inputBox relative w-full">
                   <input
                     className="relative w-full bg-gray-800 border-none outline-none rounded font-sans text-base font-semibold text-gray-50 px-2 pt-3 pb-2"
                     type="email"
+                    name="email"
+                    value={loginform.email}
+                    onChange={handleLoginchange}
                     required
                   />
                   <i>Email</i>
@@ -57,13 +143,16 @@ function Login() {
                   <input
                     className="relative w-full bg-gray-800 border-none outline-none rounded font-sans text-base font-semibold text-gray-50 px-2 pt-3 pb-2"
                     type="password"
+                    name="password"
+                    value={loginform.password}
+                    onChange={handleLoginchange}
                     required
                   />
                   <i>Password</i>
                 </div>
-                <div className="links relative w-full flex justify-between">
+                <div className="links cursor-pointer relative w-full flex justify-between">
                   <a onClick={() => setForgot(true)}>Forgot Password?</a>
-                  <a onClick={() => setFlipped(true)}>New User?</a>
+                  <a onClick={() => setFlipped(true)}>Create Account?</a>
                 </div>
                 <div className="inputBox relative w-full ">
                   <input
@@ -84,16 +173,16 @@ function Login() {
               </h2>
               <form
                 className="form w-full flex flex-col gap-7"
-                method="POST"
-                onSubmit={() => {
-                  handleSubmit();
-                }}
+                onSubmit={handleSubmit}
               >
                 <div className="w-full relative flex flex-row justify-between gap-3">
                   <div className="inputBox relative w-full">
                     <input
                       className="relative w-full bg-gray-800 border-none outline-none rounded font-sans text-base font-semibold text-gray-50 px-2 pt-3 pb-2"
                       type="text"
+                      name="firstname"
+                      value={form.firstname}
+                      onChange={handleChange}
                       required
                     />
                     <i>First Name</i>
@@ -102,6 +191,9 @@ function Login() {
                     <input
                       className="relative w-full bg-gray-800 border-none outline-none rounded font-sans text-base font-semibold text-gray-50 px-2 pt-3 pb-2"
                       type="text"
+                      name="lastname"
+                      value={form.lastname}
+                      onChange={handleChange}
                       required
                     />
                     <i>Last Name</i>
@@ -111,6 +203,9 @@ function Login() {
                   <input
                     className="relative w-full bg-gray-800 border-none outline-none rounded font-sans text-base font-semibold text-gray-50 px-2 pt-3 pb-2"
                     type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
                     required
                   />
                   <i>Email</i>
@@ -119,6 +214,9 @@ function Login() {
                   <input
                     className="relative w-full bg-gray-800 border-none outline-none rounded font-sans text-base font-semibold text-gray-50 px-2 pt-3 pb-2"
                     type="password"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
                     required
                   />
                   <i>Password</i>
@@ -127,6 +225,9 @@ function Login() {
                   <input
                     className="relative w-full bg-gray-800 border-none outline-none rounded font-sans text-base font-semibold text-gray-50 px-2 pt-3 pb-2"
                     type="password"
+                    name="repassword"
+                    value={form.repassword}
+                    onChange={handleChange}
                     required
                   />
                   <i>Re-enter password</i>
@@ -138,7 +239,7 @@ function Login() {
                     value="Register"
                   />
                 </div>
-                <div className="links relative w-full flex justify-end">
+                <div className="links cursor-pointer relative w-full flex justify-end">
                   <a onClick={() => setFlipped(false)}>
                     Already have an account? <u>Login</u>
                   </a>
