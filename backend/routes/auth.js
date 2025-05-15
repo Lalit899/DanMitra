@@ -59,4 +59,33 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Logout
+router.post("/logout", (req, res) => {
+  res.status(200).json({
+    message: "Logout successful",
+  });
+});
+
+// Get user details
+router.post("/user", async (req, res) => {
+  const { email } = req.body;
+  console.log("User details request received");
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ error: "User not found" });
+    res.status(200).json({
+      message: "User data retrieved successfully",
+      user: {
+        id: user._id,
+        email: user.email,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        password: user.password,
+      },
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message || "Server error" });
+  }
+});
+
 module.exports = router;

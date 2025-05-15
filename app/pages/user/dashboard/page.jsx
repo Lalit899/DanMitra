@@ -1,7 +1,7 @@
 "use client";
-
-import Sidebar from "../../../components/Sidebar";
 import React from "react";
+import { useRouter } from "next/navigation";
+import Sidebar from "../../../components/Sidebar";
 
 const donationOptions = [
   {
@@ -27,11 +27,12 @@ const donationOptions = [
 ];
 
 export default function Dashboard() {
+  const router = useRouter();
   return (
     <div className="flex min-h-screen bg-purple-100 text-gray-900">
       <Sidebar />
       {/* Main content */}
-      <main className="flex-1 p-7">
+      <main className="flex-1  p-7">
         <h1 className="text-3xl font-bold mb-6">Welcome back, User</h1>
         <section>
           <h2 className="text-2xl font-semibold mb-6">Start Donating!</h2>
@@ -43,8 +44,15 @@ export default function Dashboard() {
               >
                 <div className="text-7xl mb-4">{option.icon}</div>
                 <h3 className="text-lg font-semibold">{option.title}</h3>
-                <p className="text-sm text-gray-600 h-10">{option.description}</p>
-                <button className="text-sm mt-4 px-3 py-2 transition-colors bg-purple-600 text-white rounded hover:bg-purple-700">
+                <p className="text-sm text-gray-600 h-10">
+                  {option.description}
+                </p>
+                <button
+                  className="text-sm mt-4 px-3 py-2 transition-colors bg-purple-600 text-white rounded hover:bg-purple-700"
+                  onClick={() => {
+                    router.push("/pages/user/start-donation");
+                  }}
+                >
                   Donate Now
                 </button>
               </div>

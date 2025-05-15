@@ -83,6 +83,7 @@ function Login() {
       const res = await loginUser(loginform);
       if (res.success) {
         notifysuccess("Login successful");
+        localStorage.setItem("user-email", loginform.email);
         setTimeout(() => {
           router.push("/pages/user/dashboard");
           setLoginform({ email: "", password: "" });
@@ -107,9 +108,12 @@ function Login() {
         ))}
       </div>
       <ToastContainer />
-      <div onClick={router.back} className="absolute top-10 left-14 text-3xl text-blue-400 bg-gray-800 bg-opacity-35 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-900 backdrop-blur-md backdrop-saturate-150 border-2 border-blue-950 border-opacity-40 transition-all duration-500 ease-in-out">
-          <IoMdArrowRoundBack />
-        </div>
+      <div
+        onClick={router.back}
+        className="absolute top-10 left-14 text-3xl text-blue-400 bg-gray-800 bg-opacity-35 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-900 backdrop-blur-md backdrop-saturate-150 border-2 border-blue-950 border-opacity-40 transition-all duration-500 ease-in-out"
+      >
+        <IoMdArrowRoundBack />
+      </div>
       {/* card container */}
       <div
         className={`absolute ${
