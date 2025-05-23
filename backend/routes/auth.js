@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const Razorpay = require("razorpay");
+
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
 router.get("/", (req, res) => {
   res.send("Auth route is working");
@@ -50,6 +56,20 @@ router.post("/login", async (req, res) => {
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(401).json({ error: "Invalid password" });
 
+    // Check if user already has a Razorpay customer ID
+    if (!user.razorpay_customer_id) {
+      // Create Razorpay customer
+      const customer = await razorpay.customers.create({
+        name: user.name,
+        email: user.email,
+        contact: "9999999999", // if you store contact number in user model, add it here
+      });
+
+      // Save razorpay_customer_id in user document
+      user.razorpay_customer_id = customer.id;
+      await user.save();
+    }
+
     res.status(200).json({
       message: "Login successful",
       user: { id: user._id },
@@ -69,10 +89,11 @@ router.post("/logout", (req, res) => {
 // Get user details
 router.post("/user", async (req, res) => {
   const { email } = req.body;
-  console.log("User details request received");
+
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "User not found" });
+
     res.status(200).json({
       message: "User data retrieved successfully",
       user: {
@@ -81,6 +102,7 @@ router.post("/user", async (req, res) => {
         firstname: user.firstname,
         lastname: user.lastname,
         password: user.password,
+        razorpay_customer_id: user.razorpay_customer_id,
       },
     });
   } catch (err) {

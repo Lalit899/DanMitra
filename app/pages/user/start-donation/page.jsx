@@ -36,18 +36,18 @@ export default function StartDonationPage() {
     // Add payment API or logic here
   };
   return (
-    <div className="flex min-h-screen bg-purple-50 text-gray-900">
+    <div className="flex min-h-screen bg-purple-100 text-gray-900">
       <Sidebar />
-      <main className="min-h-screen  p-7">
-        <h1 className="text-3xl font-bold mb-5">
+      <main className="min-h-screen flex flex-wrap flex-col w-[1250px] p-7">
+        <h1 className="text-3xl font-bold mb-4">
           Start a Donation. Support a Cause!
         </h1>
-        <p className="text-gray-700">
+        <p className="text-gray-700 mb-4">
           Here you can choose causes and enter donation details.
         </p>
-        <hr className="mt-3 border-2 border-purple-200 rounded mb-8 w-[1200px]" />
+        <hr className="border-2 border-purple-200 rounded mb-8 " />
 
-        <div className="space-y-8 w-[1200px] ">
+        <div className="space-y-6">
           {donations.map((donation, index) => (
             <DonationCard
               key={index}

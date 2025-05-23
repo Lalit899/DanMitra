@@ -6,6 +6,8 @@ import { createOrder } from "@/utils/api";
 
 export default function RazorpayBtn({ amount }) {
   const [loading, setLoading] = useState(false);
+  const email = localStorage.getItem("user-email");
+  const customer_id = localStorage.getItem("customer_id");
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
@@ -25,7 +27,7 @@ export default function RazorpayBtn({ amount }) {
     }
     setLoading(true);
     try {
-      const response = await createOrder(amount);
+      const response = await createOrder(amount, customer_id);
 
       if (!response.success) {
         alert("Failed to create order. Please try again.");
@@ -47,12 +49,12 @@ export default function RazorpayBtn({ amount }) {
         amount: order.amount,
         currency: order.currency,
         name: "DaanMitra",
-        description: "Donation Payment",
+        description: "DaanMitra Donation Payment",
         order_id: order.id, // From backend
         callback_url: "http://localhost:3000/pages/user/start-donation", // Success URL
         prefill: {
           name: "Test User",
-          email: "test@example.com",
+          email: email,
           contact: "9999999999",
         },
         theme: {

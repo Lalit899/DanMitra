@@ -62,20 +62,19 @@ export default function MyProfilePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Profile updated successfully!");
-    console.log("Submitted:", formData);
   };
 
   return (
     <div className="flex min-h-screen bg-purple-100 text-gray-900">
       <Sidebar />
-      <main className="min-h-screen px-10 p-7">
+      <main className="min-h-screen p-7 w-[1250px]">
         <h1 className="text-3xl font-bold mb-4">My Profile</h1>
-        <p className="text-gray-700">
+        <p className="text-gray-700 mb-4">
           Manage your profile details and preferences.
         </p>
-        <hr className="mt-2 border-2 border-purple-200 rounded mb-5 w-[230%]" />
+        <hr className="mt-2 border-2 border-purple-200 rounded mb-5 " />
         {/* Add editable profile info form */}
-        <div className="relative bg-white shadow-2xl rounded-3xl w-[230%]  p-8">
+        <div className="relative bg-white shadow-2xl rounded-3xl p-8">
           <div className="flex flex-col items-center mb-6">
             <div
               className="relative w-32 h-32 rounded-full  overflow-hidden  shadow-lg cursor-pointer group"

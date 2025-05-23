@@ -1,7 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "../../../components/Sidebar";
+import { getPaymentHistory, userdetails } from "../../../../utils/api";
+import { format } from "date-fns";
 
 const donationOptions = [
   {
@@ -28,14 +30,54 @@ const donationOptions = [
 
 export default function Dashboard() {
   const router = useRouter();
+  const [totalDonated, setTotalDonated] = useState(0);
+  const [lastTransaction, setLastTransaction] = useState(0);
+  const [username, setUsername] = useState("User");
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const useremail = localStorage.getItem("user-email");
+      const res = await userdetails(useremail);
+      if (res.success) {
+        setUsername(res.data.user.firstname);
+        localStorage.setItem("customer_id", res.data.user.razorpay_customer_id);
+      } else {
+        Error("Error fetching user details:", res.message);
+      }
+    };
+    fetchUserDetails();
+
+    const customerid = localStorage.getItem("customer_id");
+    const email = localStorage.getItem("user-email");
+    const fetchTransactionHistory = async () => {
+      const res = await getPaymentHistory(customerid, email);
+      if (res.success) {
+        if (res.data.status === 404) {
+          setLastTransaction(0);
+        } else {
+          setLastTransaction(res.data[0]);
+          const totalAmount = res.data
+            .filter((item) => item.status === "captured")
+            .reduce((sum, item) => sum + item.amount, 0);
+          setTotalDonated(totalAmount);
+        }
+      } else {
+        Error("Error fetching user details:", res.message);
+      }
+    };
+    fetchTransactionHistory();
+  }, []);
+
   return (
     <div className="flex min-h-screen bg-purple-100 text-gray-900">
       <Sidebar />
       {/* Main content */}
       <main className="flex-1  p-7">
-        <h1 className="text-3xl font-bold mb-6">Welcome back, User</h1>
+        <h1 className="text-3xl font-bold mb-4">
+          Welcome back, <span className="capitalize">{username}</span>
+        </h1>
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Start Donating!</h2>
+          <h2 className="text-2xl font-semibold mb-4">Start Donating!</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {donationOptions.map((option) => (
               <div
@@ -65,8 +107,27 @@ export default function Dashboard() {
           <h2 className="text-2xl font-semibold mb-4">Your Donation Summary</h2>
           <div className="bg-purple-50 p-4 rounded-xl shadow-md text-gray-600">
             {/* Add actual summary info here */}
-            <p>Total Donated: ₹0</p>
-            <p>Recent Donations: None yet</p>
+            <p>
+              Total Donated:{" "}
+              <span className="font-semibold">
+                ₹{(totalDonated / 100).toFixed(2)}
+              </span>
+            </p>
+            <p>
+              Recent Donations:{" "}
+              <span className="font-semibold">
+                {lastTransaction
+                  ? `₹${(lastTransaction.amount / 100).toFixed(2)} on ${format(
+                      Date(lastTransaction.created_at * 1000),
+                      "dd MMM yyyy"
+                    )} was ${
+                      lastTransaction.status === "captured"
+                        ? "successful"
+                        : "failed"
+                    }`
+                  : "none yet"}
+              </span>
+            </p>
           </div>
         </section>
       </main>

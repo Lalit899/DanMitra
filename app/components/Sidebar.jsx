@@ -4,12 +4,34 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { TbLogout2 } from "react-icons/tb";
+import { TbLayoutDashboard } from "react-icons/tb";
+import {
+  MdOutlinePayments,
+  MdHistory,
+  MdOutlineSwitchAccount,
+} from "react-icons/md";
 
 const navLinks = [
-  { label: "Dashboard", href: "/pages/user/dashboard" },
-  { label: "Start Donation", href: "/pages/user/start-donation" },
-  { label: "Donation History", href: "/pages/user/donation-history" },
-  { label: "My Profile", href: "/pages/user/profile" },
+  {
+    label: "Dashboard",
+    href: "/pages/user/dashboard",
+    icon: <TbLayoutDashboard className="text-2xl" />,
+  },
+  {
+    label: "Start Donation",
+    href: "/pages/user/start-donation",
+    icon: <MdOutlinePayments className="text-2xl" />,
+  },
+  {
+    label: "Donation History",
+    href: "/pages/user/donation-history",
+    icon: <MdHistory className="text-2xl" />,
+  },
+  {
+    label: "My Profile",
+    href: "/pages/user/profile",
+    icon: <MdOutlineSwitchAccount className="text-2xl" />,
+  },
 ];
 
 export default function Sidebar() {
@@ -39,20 +61,21 @@ export default function Sidebar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-3 py-2 rounded-lg transition-colors ${
+              className={`px-3 py-2 rounded-lg flex flex-row items-center justify-between transition-colors ${
                 isActive(link.href)
                   ? "bg-purple-100 text-purple-950 font-semibold "
                   : "hover:bg-blue-900"
               }`}
             >
               {link.label}
+              {link.icon}
             </Link>
           ))}
         </nav>
         <div className="flex mt-2">
           <button
             onClick={handleLogout}
-            className="flex flex-row flex-wrap justify-center items-center font-semibold bg-indigo-700 hover:bg-indigo-600 text-purple-100 hover:text-purple-100 px-16 py-2 rounded-xl transition-all duration-900 " 
+            className="flex flex-row flex-wrap justify-center items-center font-semibold bg-indigo-700 hover:bg-indigo-600 text-purple-100 hover:text-purple-100 px-16 py-2 rounded-xl transition-all duration-900 "
           >
             <TbLogout2 className="text-xl mr-2" /> Logout
           </button>

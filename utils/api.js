@@ -58,12 +58,12 @@ export async function logoutUser() {
   }
 }
 
-export async function createOrder(amount) {
+export async function createOrder(amount, customer_id) {
   try {
     const result = await fetch(`${SERVER_URL}/create-order`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount }),
+      body: JSON.stringify({ amount, customer_id }),
     });
 
     const data = await result.json();
@@ -91,23 +91,31 @@ export async function userdetails(useremail) {
   }
 }
 
-// export async function getUserData(userId) {
-//   try {
-//     const res = await fetch(`${BASE_URL}/user/${userId}`, {
-//       method: "GET",
-//       headers: { "Content-Type": "application/json" },
-//     });
+export async function getPaymentHistory(customerid, email) {
+  try {
+    const res = await fetch(
+      `${SERVER_URL}/payment-history?customer_id=${customerid}&email=${email}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
-//     const data = await res.json();
-//     if (!res.ok) {
-//       return { success: false, message: data.error || "Failed to fetch user data" };
-//     }
+    const data = await res.json();
+    if (!res.ok) {
+      return {
+        success: false,
+        message: data.error || "Failed to fetch payment history",
+      };
+    }
 
-//     return { success: true, data };
-//   } catch (err) {
-//     return { success: false, message: "Network error" };
-//   }
-// }
+    return { success: true, data };
+  } catch (err) {
+    return { success: false, message: "Network error" };
+  }
+}
+
+// Uncomment this function if you need to update user data
 
 // export async function updateUserData(userId, userData) {
 //   try {

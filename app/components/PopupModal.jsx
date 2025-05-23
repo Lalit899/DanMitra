@@ -28,6 +28,7 @@ const PaymentModal = ({ isOpen, onClose, onConfirm, ngoName }) => {
           placeholder="Enter amount you wish to donate"
           min="1"
           value={amount}
+          required
           onChange={(e) => setAmount(e.target.value)}
           className="w-full p-2 border-2 border-blue-800 rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
         />

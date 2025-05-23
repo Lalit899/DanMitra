@@ -44,19 +44,3 @@ const writeData = (data) => {
 if (!fs.existsSync("orders.json")) {
   writeData([]);
 }
-// app.post("/api/razorpay-order", async (req, res) => {
-//   const { amount, currency } = req.body;
-//   try {
-//     const options = {
-//       amount: amount * 100,
-//       currency: currency,
-//       receipt: "receipt#1",
-//     };
-//     const order = await razorpay.orders.create(options);
-//     res.json(order);
-//   } catch (error) {
-//     console.error("Error creating Razorpay order:", error);
-//     res.status(500).json({ error: "Failed to create order" });
-//   }
-// });
-
