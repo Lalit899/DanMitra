@@ -57,7 +57,7 @@ export default function RazorpayBtn({ amount, disabled }) {
         handler: function (response) {
           // You can optionally send response to backend here
           // Then redirect to your donation start page
-          window.location.href = "/user/start-donation";
+          window.location.href = "/pages/user/start-donation";
         },
         prefill: {
           name: username,
