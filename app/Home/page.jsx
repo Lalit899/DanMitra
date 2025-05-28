@@ -95,6 +95,90 @@ function Home() {
           </div>
         </section>
 
+        <section className="py-10 px-6 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-4xl font-extrabold text-indigo-700 mb-8 text-center">
+              About DaanMitra
+            </h2>
+
+            <div className="space-y-12 text-gray-800 text-lg leading-relaxed">
+              <div>
+                <h3 className="text-2xl font-semibold mb-3 text-indigo-600">
+                  Our Story
+                </h3>
+                <p>
+                  DaanMitra was born from a simple yet powerful idea: to make
+                  charitable donations more transparent, trustworthy, and
+                  accessible to everyone. In India, where generosity is abundant
+                  but trust in donation channels can be limited, we aim to
+                  bridge the gap between donors and verified causes.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-3 text-indigo-600">
+                  What We Do
+                </h3>
+                <p>
+                  We leverage cutting-edge blockchain technology to create a
+                  transparent donation platform where every rupee and token can
+                  be tracked from donor to beneficiary. DaanMitra allows users
+                  to donate securely using popular UPI methods or cryptocurrency
+                  payments via Cryptomus, catering to traditional and modern
+                  donors alike.
+                </p>
+                <p className="mt-4">
+                  Our platform partners only with NGOs and charities that have
+                  passed strict verification and compliance standards, ensuring
+                  your donations reach impactful projects addressing Education,
+                  Healthcare, Environment, Disaster Relief, and more.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-3 text-indigo-600">
+                  Why Choose DaanMitra?
+                </h3>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>
+                    <strong>Transparency:</strong> Blockchain records provide
+                    immutable proof of your donations, accessible anytime.
+                  </li>
+                  <li>
+                    <strong>Security:</strong> Secure payment processing with
+                    multiple trusted options including UPI and crypto.
+                  </li>
+                  <li>
+                    <strong>Impactful Giving:</strong> Only verified,
+                    accountable charities with real impact stories.
+                  </li>
+                  <li>
+                    <strong>User-Friendly:</strong> Simple, clear donation flow
+                    with instant receipts and tracking.
+                  </li>
+                  <li>
+                    <strong>Community:</strong> Join a growing community of
+                    conscious donors making a difference together.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-purple-100 p-5 rounded-xl ">
+                <h3 className="text-2xl text-center font-semibold mb-3 text-indigo-600">
+                  Our Vision
+                </h3>
+                <p>
+                  We envision a future where technology empowers generosity,
+                  making charitable giving more effective, transparent, and
+                  joyful. DaanMitra strives to become the most trusted donation
+                  platform in India, connecting hearts to causes with integrity
+                  and innovation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/*Chart Section: Charity Data with Charts */}
         <section className=" w-ful h-full py-16 px-6 md:px-52 bg-white text-gray-900 text-center">
           <h2 className="text-2xl font-bold">Trends in Philanthropy</h2>

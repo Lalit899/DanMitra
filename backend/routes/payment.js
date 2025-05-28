@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Razorpay = require("razorpay");
-const { db } = require("../models/User");
+const { createSignature } = require("../../utils/api");
 require("dotenv").config();
 
 const razorpay = new Razorpay({
@@ -59,6 +59,54 @@ router.get("/payment-history", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+// Cryptomus routes
+
+router.post("/create-payment", async (req, res) => {
+  const { amount, currency, orderId, email } = req.body;
+
+  const paymentData = {
+    amount,
+    currency,
+    order_id: orderId,
+    url_return: "http://localhost:3000/pages/user/start-donation",
+    url_callback: "http://localhost:5000/payment-webhook",
+    buyer_email: email,
+    is_test: 1,
+  };
+
+  const sign = createSignature(paymentData, process.env.CRYPTOMUS_API_KEY);
+
+  try {
+    const response = await fetch("https://api.cryptomus.com/v1/payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        merchant: process.env.CRYPTOMUS_MERCHANT_UUID,
+        sign: sign,
+      },
+      body: JSON.stringify(paymentData),
+    });
+
+    const result = await response.json();
+    res.json(result);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ error: "Failed to create payment" });
+  }
+});
+
+router.post("/payment-webhook", express.json(), (req, res) => {
+  const { status, order_id, amount } = req.body;
+  console.log("Webhook received:", req.body);
+
+  if (status === "paid") {
+    console.log(`✅ Donation ${order_id} paid: ${amount}`);
+    // Save to DB or update status
+  }
+
+  res.status(200).json({ message: "Webhook received" });
 });
 
 module.exports = router;

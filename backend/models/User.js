@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, required: true },
     repassword: { type: String, required: true },
     razorpay_customer_id: { type: String, default: null, unique: true },
+    last_login: { type: String },
   },
   { timestamps: true }
 );

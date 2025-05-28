@@ -155,7 +155,7 @@ function Login() {
                   <i>Password</i>
                 </div>
                 <div className="links cursor-pointer relative w-full flex justify-between">
-                  <a onClick={() => setForgot(true)}>Forgot Password?</a>
+                  {/* <a onClick={() => setForgot(true)}>Forgot Password?</a> */}
                   <a onClick={() => setFlipped(true)}>Create Account?</a>
                 </div>
                 <div className="inputBox relative w-full ">

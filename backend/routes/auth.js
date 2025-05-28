@@ -70,6 +70,24 @@ router.post("/login", async (req, res) => {
       await user.save();
     }
 
+    if (user.last_login || !user.last_login) {
+      const now = new Date();
+      const formatted = now
+        .toLocaleString("en-IN", {
+          weekday: "short",
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        })
+        .replace(/,/g, "");
+      user.last_login = formatted;
+      await user.save();
+    }
+
     res.status(200).json({
       message: "Login successful",
       user: { id: user._id },
@@ -103,6 +121,7 @@ router.post("/user", async (req, res) => {
         lastname: user.lastname,
         password: user.password,
         razorpay_customer_id: user.razorpay_customer_id,
+        last_login: user.last_login,
       },
     });
   } catch (err) {

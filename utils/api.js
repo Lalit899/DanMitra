@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -112,6 +114,38 @@ export async function getPaymentHistory(customerid, email) {
     return { success: true, data };
   } catch (err) {
     return { success: false, message: "Network error" };
+  }
+}
+
+// Cryptomus API Integration and Signature Hashing
+export function createSignature(data, apiKey) {
+  const json = JSON.stringify(data);
+  return crypto
+    .createHash("sha256")
+    .update(json + apiKey)
+    .digest("hex");
+}
+
+export async function createCryptoPayment({
+  amount,
+  currency,
+  orderId,
+  email,
+}) {
+  try {
+    const response = await fetch(`${SERVER_URL}/create-payment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount, currency, orderId, email }),
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("API error:", error);
+    throw new Error("Unable to create payment");
   }
 }
 

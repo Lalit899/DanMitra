@@ -33,6 +33,7 @@ export default function Dashboard() {
   const [totalDonated, setTotalDonated] = useState(0);
   const [lastTransaction, setLastTransaction] = useState(0);
   const [username, setUsername] = useState("User");
+  const [lastlogin, setLastlogin] = useState("fetching...");
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -40,7 +41,10 @@ export default function Dashboard() {
       const res = await userdetails(useremail);
       if (res.success) {
         setUsername(res.data.user.firstname);
+        setLastlogin(res.data.user.last_login);
         localStorage.setItem("customer_id", res.data.user.razorpay_customer_id);
+        localStorage.setItem("customer_name", res.data.user.firstname);
+        localStorage.setItem("customer_lastname", res.data.user.lastname);
       } else {
         Error("Error fetching user details:", res.message);
       }
@@ -74,7 +78,8 @@ export default function Dashboard() {
       {/* Main content */}
       <main className="flex-1  p-7">
         <h1 className="text-3xl font-bold mb-4">
-          Welcome back, <span className="capitalize">{username}</span>
+          Welcome back,{" "}
+          <span className="capitalize text-indigo-800">{username}</span>
         </h1>
         <section>
           <h2 className="text-2xl font-semibold mb-4">Start Donating!</h2>
@@ -103,7 +108,7 @@ export default function Dashboard() {
         </section>
 
         {/* Summary */}
-        <section className="mt-10">
+        <section className="mt-9">
           <h2 className="text-2xl font-semibold mb-4">Your Donation Summary</h2>
           <div className="bg-purple-50 p-4 rounded-xl shadow-md text-gray-600">
             {/* Add actual summary info here */}
@@ -127,6 +132,18 @@ export default function Dashboard() {
                     }`
                   : "none yet"}
               </span>
+            </p>
+          </div>
+        </section>
+        <section className="mt-5">
+          <h2 className="text-2xl font-semibold mb-4">Recent Logins</h2>
+          <div className="bg-purple-50 p-4 rounded-xl shadow-md text-gray-600">
+            <p>
+              Last Login:{" "}
+              <span className="font-semibold">
+                {lastlogin ? lastlogin : "first login"}
+              </span>
+              {console.log(lastlogin)}
             </p>
           </div>
         </section>

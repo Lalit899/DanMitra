@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { MdPrivacyTip } from "react-icons/md";
 
 function Footer() {
   return (
@@ -79,12 +81,27 @@ function Footer() {
                       </svg>
                     </span>
                     <a
-                      target="javascript:;"
                       className="text-left text-zinc-600 break-words hover:underline hover:text-zinc-800"
-                      href="/"
+                      href="mailto:2103013071@ipec.org.in"
                     >
-                      contact@danmitra.com
+                      2103013071@ipec.org.in
                     </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="flex flex-col">
+                <h2 className="font-mono font-bold text-zinc-700 text-lg">
+                  Legal
+                </h2>
+                <ul className="mt-4 grid gap-2">
+                  <li className="flex justify-center items-center text-sm">
+                    <MdPrivacyTip />
+                    <Link
+                      href="/pages/legal"
+                      className=" hover:underline ml-1 text-zinc-700"
+                    >
+                      Privacy Policy & Terms of Use
+                    </Link>
                   </li>
                 </ul>
               </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { FiLogIn } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 
 function Header() {
@@ -43,9 +44,9 @@ function Header() {
           {/* Donate Button (Single for All Screens) */}
           <Link
             href="/login"
-            className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm mx-4 px-4 py-2 dark:bg-purple-700 dark:hover:bg-blue-700 transition-all duration-700"
+            className="text-white flex justify-center items-center bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm mx-4 px-4 py-2 dark:bg-purple-700 dark:hover:bg-blue-700 transition-all duration-700"
           >
-            Login
+            Login <FiLogIn className="text-xl ml-1"/>
           </Link>
 
           {/* Mobile Menu Button */}

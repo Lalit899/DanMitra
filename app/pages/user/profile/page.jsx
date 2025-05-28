@@ -68,9 +68,9 @@ export default function MyProfilePage() {
     <div className="flex min-h-screen bg-purple-100 text-gray-900">
       <Sidebar />
       <main className="min-h-screen p-7 w-[1250px]">
-        <h1 className="text-3xl font-bold mb-4">My Profile</h1>
+        <h1 className="text-3xl font-bold mb-4">Profile</h1>
         <p className="text-gray-700 mb-4">
-          Manage your profile details and preferences.
+          Manage your profile details and credentials.
         </p>
         <hr className="mt-2 border-2 border-purple-200 rounded mb-5 " />
         {/* Add editable profile info form */}

@@ -4,10 +4,13 @@ import React, { useState } from "react";
 
 import { createOrder } from "@/utils/api";
 
-export default function RazorpayBtn({ amount }) {
+export default function RazorpayBtn({ amount, disabled }) {
   const [loading, setLoading] = useState(false);
   const email = localStorage.getItem("user-email");
   const customer_id = localStorage.getItem("customer_id");
+  const firstname = localStorage.getItem("customer_name");
+  const lastname = localStorage.getItem("customer_lastname");
+  const username = firstname + " " + lastname;
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
@@ -53,7 +56,7 @@ export default function RazorpayBtn({ amount }) {
         order_id: order.id, // From backend
         callback_url: "http://localhost:3000/pages/user/start-donation", // Success URL
         prefill: {
-          name: "Test User",
+          name: username,
           email: email,
           contact: "9999999999",
         },
@@ -67,6 +70,8 @@ export default function RazorpayBtn({ amount }) {
     } catch (error) {
       console.error("Error during Razorpay payment:", error);
       alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -74,11 +79,11 @@ export default function RazorpayBtn({ amount }) {
       <div>
         <button
           onClick={handleRazorpay}
-          disabled={loading}
-          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2
-              rounded-lg shadow"
+          disabled={loading || disabled}
+          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2
+              rounded-lg shadow disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-300"
         >
-          {loading ? "Processing..." : "Donate Now - (Razorpay-UPI/Bank/Card)"}
+          {loading ? "Processing..." : "Donate Now (Razorpay)"}
         </button>
       </div>
     </>
