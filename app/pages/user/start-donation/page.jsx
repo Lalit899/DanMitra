@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Sidebar from "../../../components/Sidebar";
-import DonationCard from "../../../components/Donationcard";
+import DonationCard from "../../../components/DonationCard";
 import PaymentModal from "../../../components/PopupModal";
 import { BiSolidDonateHeart } from "react-icons/bi";
 
