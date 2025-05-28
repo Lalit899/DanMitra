@@ -10,7 +10,7 @@ const paymentRoutes = require("./routes/payment");
 const authRoutes = require("./routes/auth");
 
 const app = express();
-app.use(cors({ origin: "https://daanmitraserver.onrender.com/", credentials: true }));
+app.use(cors({ origin: "https://daanmitra-6vb5bdxy8-lalit-developers-projects.vercel.app", credentials: true }));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
