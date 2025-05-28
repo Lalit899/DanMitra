@@ -54,7 +54,11 @@ export default function RazorpayBtn({ amount, disabled }) {
         name: "DaanMitra",
         description: "DaanMitra Donation Payment",
         order_id: order.id, // From backend
-        callback_url: "https://daanmitra.vercel.app/pages/user/start-donation", // Success URL
+        handler: function (response) {
+          // You can optionally send response to backend here
+          // Then redirect to your donation start page
+          window.location.href = "/user/start-donation";
+        },
         prefill: {
           name: username,
           email: email,
