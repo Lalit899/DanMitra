@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta name="cryptomus" content="3f5acd21" />
+        <meta name="cryptomus" content="6f2e2dc4" />
       </head>
       <body
         suppressHydrationWarning={true}
