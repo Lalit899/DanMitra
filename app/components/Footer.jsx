@@ -28,7 +28,10 @@ function Footer() {
                       ></path>
                     </svg>
                   </span>
-                  <p className="font-inter">IPEC</p>
+                  <p className="font-inter">
+                    {/* IPEC */}
+                    KEC
+                    </p>
                 </li>
                 <li className="flex flex-row items-start">
                   <span>
@@ -54,7 +57,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="mt-4 md:mt-0 lg:mt-0 flex flex-row flex-wrap lg:flex-nowrap lg:justify-center gap-4 lg:gap-x-24">
+            {/* <div className="mt-4 md:mt-0 lg:mt-0 flex flex-row flex-wrap lg:flex-nowrap lg:justify-center gap-4 lg:gap-x-24">
               <div className="flex flex-col">
                 <h2 className="font-mono font-bold text-zinc-700 text-lg">
                   Contact
@@ -105,7 +108,7 @@ function Footer() {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="w-full mt-10 py-10 border-t border-zinc-200 font-inter text-center text-xs text-zinc-400">
             Copyright © 2025 DaanMitra All rights reserved.

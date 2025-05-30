@@ -7,28 +7,52 @@ import p from "../../../public/p.jpg";
 import s from "../../../public/s.jpg";
 import c from "../../../public/c.jpg";
 
+// const teamMembers = [
+//   {
+//     name: "Lalit Rathod",
+//     role: "Full Stack Developer",
+//     image: l,
+//   },
+//   {
+//     name: "Pragyanshu Gupta",
+//     role: "Frontend Developer",
+//     image: p,
+//   },
+//   {
+//     name: "Sharul Gautam",
+//     role: "Backend Developer",
+//     image: s,
+//   },
+//   {
+//     name: "Chirag Sharma",
+//     role: "Backend Developer",
+//     image: c,
+//   },
+// ];
+
 const teamMembers = [
   {
-    name: "Lalit Rathod",
-    role: "Full Stack Developer",
+    name: "Nikhil Singh",
+    role: "Frontend Developer",
     image: l,
   },
   {
-    name: "Pragyanshu Gupta",
+    name: "Pranav Sharma",
     role: "Frontend Developer",
     image: p,
   },
   {
-    name: "Sharul Gautam",
+    name: "Raghul Shukla",
     role: "Backend Developer",
     image: s,
   },
   {
-    name: "Chirag Sharma",
+    name: "Piyush Gupta",
     role: "Backend Developer",
     image: c,
   },
 ];
+
 
 function Team() {
   return (
@@ -51,13 +75,13 @@ function Team() {
                 className="relative bg-white/10 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden p-6 group hover:scale-[1.03] hover:shadow-2xl transition duration-500"
               >
                 <div className="relative z-10">
-                  <Image
+                  {/* <Image
                     src={member.image}
                     alt={member.name}
                     width={128}
                     height={128}
                     className="w-28 h-28 mx-auto object-cover rounded-full border-4 border-purple-200 shadow-md transition-transform duration-300 group-hover:scale-110"
-                  />
+                  /> */}
                   <h2 className="mt-5 text-xl font-semibold text-white">
                     {member.name}
                   </h2>
