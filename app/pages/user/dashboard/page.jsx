@@ -7,24 +7,28 @@ import { format } from "date-fns";
 
 const donationOptions = [
   {
-    title: "Families in Need",
-    description: "Support basic essentials for struggling families",
-    icon: "👨‍👩‍👧‍👦",
+    title: "Smile Foundation",
+    description:
+      "It empowers underprivileged children, youth, and women through access to education, healthcare, and livelihood opportunities.",
+    logo: "https://www.smilefoundationindia.org/wp-content/uploads/2024/07/SMILE-FOUNDATION-LOGO-e1662456150120-1-300x235.png",
   },
   {
-    title: "Orphanages",
-    description: "Help children with food, education, and care",
-    icon: "👶",
+    title: "Goonj",
+    description:
+      "It addresses basic but neglected needs like clothing, hygiene, and rural development using urban surplus as a tool for development.",
+    logo: "https://goonj.org/wp-content/uploads/2020/06/Goonj-logo-10June20.png",
   },
   {
-    title: "Senior Citizens",
-    description: "Provide medical and daily needs for elderly",
-    icon: "👴",
+    title: "Akshaya Patra",
+    description:
+      "It ensures that no child in India is deprived of education due to hunger.",
+    logo: "https://www.akshayapatra.org/includefiles/settings/logo1.png",
   },
   {
-    title: "Students",
-    description: "Fund education and supplies for students",
-    icon: "🎓",
+    title: "GiveIndia",
+    description:
+      "It alleviates poverty by enabling the world to give more effectively and transparently.",
+    logo: "https://cfstatic.give.do/4a8e5f5d-659d-4558-8ae9-378ec1e92b1b.webp",
   },
 ];
 
@@ -87,20 +91,24 @@ export default function Dashboard() {
             {donationOptions.map((option) => (
               <div
                 key={option.title}
-                className="bg-purple-50 p-5 w-30  rounded-2xl shadow-md"
+                className="bg-purple-50 p-5 w-30  rounded-2xl shadow-md hover:shadow-lg transition-all duration-500"
               >
-                <div className="text-7xl mb-4">{option.icon}</div>
-                <h3 className="text-lg font-semibold">{option.title}</h3>
-                <p className="text-sm text-gray-600 h-10">
+                <img
+                  className="w-24 h-16 mb-4 object-contain"
+                  src={option.logo}
+                  alt={option.title + " logo"}
+                ></img>
+                <h3 className="text-md font-semibold">{option.title}</h3>
+                <p className="text-xs ml-0.5 text-gray-600 h-12">
                   {option.description}
                 </p>
                 <button
-                  className="text-sm mt-4 px-3 py-2 transition-colors bg-purple-600 text-white rounded hover:bg-purple-700"
+                  className="text-sm mt-3 px-3 py-2 transition-colors bg-purple-600 text-white rounded hover:bg-purple-700"
                   onClick={() => {
-                    router.push("/pages/user/start-donation");
+                    router.push(`/pages/user/start-donation#${option.title}`);
                   }}
                 >
-                  Donate Now
+                  Support Now
                 </button>
               </div>
             ))}
@@ -130,7 +138,7 @@ export default function Dashboard() {
                         ? "successful"
                         : "failed"
                     }`
-                  : "none yet"}
+                  : "no transactions yet!"}
               </span>
             </p>
           </div>
@@ -143,7 +151,6 @@ export default function Dashboard() {
               <span className="font-semibold">
                 {lastlogin ? lastlogin : "first login"}
               </span>
-              {console.log(lastlogin)}
             </p>
           </div>
         </section>

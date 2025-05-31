@@ -72,7 +72,7 @@ export default function RazorpayBtn({ amount, disabled }) {
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
-      console.error("Error during Razorpay payment:", error);
+      Error("Error during Razorpay payment:", error);
       alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

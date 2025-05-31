@@ -61,7 +61,6 @@ export default function MyProfilePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Profile updated successfully!");
   };
 
   return (
@@ -75,7 +74,7 @@ export default function MyProfilePage() {
         <hr className="mt-2 border-2 border-purple-200 rounded mb-5 " />
         {/* Add editable profile info form */}
         <div className="relative bg-white shadow-2xl rounded-3xl p-8">
-          <div className="flex flex-col items-center mb-6">
+          {/* <div className="flex flex-col items-center mb-6">
             <div
               className="relative w-32 h-32 rounded-full  overflow-hidden  shadow-lg cursor-pointer group"
               onClick={() => fileInputRef.current?.click()}
@@ -84,6 +83,7 @@ export default function MyProfilePage() {
                 src={image || "/user-male-circle.png"}
                 alt="Profile"
                 className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                
               />
               <div className="absolute inset-0 bg-blue-900 bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="text-white text-3xl">
@@ -98,7 +98,7 @@ export default function MyProfilePage() {
               onChange={handleImageUpload}
               className="hidden"
             />
-          </div>
+          </div> */}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-6">

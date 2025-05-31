@@ -23,7 +23,7 @@ export default function DonationHistoryPage() {
     };
     fetchTransactionHistory();
   }, [refresh]);
-  console.log(refresh);
+
   return (
     <div className="flex min-h-screen bg-purple-100 text-gray-900">
       <Sidebar />

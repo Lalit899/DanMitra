@@ -43,14 +43,14 @@ const PaymentModal = ({ isOpen, onClose, onConfirm, ngoName }) => {
           className="w-full p-2 border-2 border-blue-800 rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
         />
         <div className="flex justify-end space-x-3">
-          {/* <CryptomusBtn
+          <CryptomusBtn
             onClick={() => {
               onConfirm(amount);
               setAmount("");
             }}
             amount={amount}
             disabled={disabled}
-          /> */}
+          />
           <RazorpayBtn
             onClick={() => {
               onConfirm(amount);

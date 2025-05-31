@@ -43,9 +43,10 @@ export default function Sidebar() {
     try {
       const res = await logoutUser();
       if (res.success) {
+        localStorage.clear();
         router.push("/");
       } else if (res.error) {
-        notify(res.message);
+        Error(res.message);
       }
     } catch (err) {
       Error("Logout error:", err);

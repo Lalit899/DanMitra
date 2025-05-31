@@ -26,7 +26,7 @@ export default function CryptomusBtn({ amount, disabled }) {
       const paymentUrl = response.data.payment_url;
       window.open(paymentUrl, "_blank");
     } catch (error) {
-      console.error("Error during Cryptomus payment:", error);
+      Error("Error during Cryptomus payment:", error);
       alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -37,7 +37,8 @@ export default function CryptomusBtn({ amount, disabled }) {
     <>
       <div>
         <button
-          onClick={handleCryptomusPayment}
+        onClick={() => alert('Crypto donations coming soon!')}
+          // onClick={handleCryptomusPayment}
           disabled={loading || disabled}
           className="bg-green-600 hover:bg-green-700 text-white px-6 py-2
               rounded-lg shadow disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-300"

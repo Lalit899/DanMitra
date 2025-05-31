@@ -73,7 +73,7 @@ function Login() {
         notify(res.message);
       }
     } catch (err) {
-      console.error("Register error:", err);
+      Error("Register error:", err);
     }
   };
 
@@ -93,7 +93,7 @@ function Login() {
         notify(res.message);
       }
     } catch (err) {
-      console.error("Login error:", err);
+      Error("Login error:", err);
     }
   };
 

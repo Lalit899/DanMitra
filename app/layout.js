@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,13 +21,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta name="cryptomus" content="6f2e2dc4" />
+        <meta name="cryptomus" content="1c89912c" />
       </head>
       <body
         suppressHydrationWarning={true}
         className={`${geistSans.variable} ${geistMono.variable} antialiased custom-scrollbar`}
       >
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
