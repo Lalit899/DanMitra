@@ -8,8 +8,7 @@ function Contact() {
       <Header />
       <div>
         <iframe
-          // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.0208894866314!2d77.33788287495777!3d28.659093182875022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfa9b30000001%3A0xf8c8e01b5759ffb0!2sInderprastha%20Engineering%20College!5e0!3m2!1sen!2sin!4v1740637940272!5m2!1sen!2sin"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.187854094957!2d77.3762902!3d28.684026699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cee217dde4bd1%3A0x6df4a357ba3129f4!2sKrishna%20Engineering%20College!5e0!3m2!1sen!2sin!4v1748623283198!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.0208894866314!2d77.33788287495777!3d28.659093182875022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfa9b30000001%3A0xf8c8e01b5759ffb0!2sInderprastha%20Engineering%20College!5e0!3m2!1sen!2sin!4v1740637940272!5m2!1sen!2sin"
           className="w-full h-60 rounded-b-xl border-none shadow-lg"
           allowFullScreen
           loading="lazy"
@@ -33,20 +32,17 @@ function Contact() {
               <div>
                 <h2 className="text-2xl font-bold mb-2">Our Address</h2>
                 <p className="text-indigo-100 ml-1">
-                  {/* Inderprastha Engineering College */}
-                  Krishna Engineering College
+                  Inderprastha Engineering College
                   <br />
-                  {/* Site IV, Industrial Area, Sahibabad, Ghaziabad, Uttar Pradesh,
-                  India. */}
-                  95, Loni Road, Between Mohannagar &, Hindon Air Force Station,
-                  Sahibabad, Ghaziabad, Uttar Pradesh, India.
+                  Site IV, Industrial Area, Sahibabad, Ghaziabad, Uttar Pradesh,
+                  India.
                   <br />
-                  PIN: 201007
+                  PIN: 201010
                 </p>
               </div>
             </div>
             {/* Social Buttons */}
-            {/* <div>
+            <div>
               <h2 className="text-2xl font-bold mb-2">Connect With Us</h2>
               <div className="flex gap-5 text-2xl text-white">
                 <a
@@ -64,7 +60,7 @@ function Contact() {
                   <FaPhoneSquareAlt />
                 </a>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
