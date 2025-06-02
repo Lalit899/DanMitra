@@ -71,12 +71,12 @@ const DonationCard = ({
 
         {/* Donate Button */}
         <div className="self-stretch md:self-center">
-          <button
+          {/* <button
             onClick={onPay}
             className="mt-4 md:mt-0 px-5 py-2.5 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-all duration-300 shadow-md"
           >
             Donate
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
