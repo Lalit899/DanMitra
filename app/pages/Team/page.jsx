@@ -15,17 +15,17 @@ const teamMembers = [
   },
   {
     name: "Pragyanshu Gupta",
-    role: "Frontend Developer",
+    role: "Frontend Tester",
     image: p,
   },
   {
     name: "Sharul Gautam",
-    role: "Backend Developer",
+    role: "Documentation Specialist",
     image: s,
   },
   {
     name: "Chirag Sharma",
-    role: "Backend Developer",
+    role: "User Experience Designer",
     image: c,
   },
 ];
